@@ -1,0 +1,56 @@
+﻿@model Egypt_Times.Models.News_Person
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>News</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Choose your prefered news topics </h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label for="exampleSelect1" class="form-label mt-4">Choose category </label>
+        
+        <div>
+            <select class="form-select" id="exampleSelect1">
+                
+                <option>Sports @Html.EditorFor(model => model.newsId, new { htmlAttributes = new { @class = "form-select" } })</option>
+                <option>Technology @Html.EditorFor(model => model.newsId, new { htmlAttributes = new { @class = "form-select" } })</option>
+                <option>Politics @Html.EditorFor(model => model.newsId, new { htmlAttributes = new { @class = "form-select" } })</option>
+                <option>Entertainment @Html.EditorFor(model => model.newsId, new { htmlAttributes = new { @class = "form-select" } })</option>
+                <option>Cars @Html.EditorFor(model => model.newsId, new { htmlAttributes = new { @class = "form-select" } })</option>
+
+            </select>
+        </div>
+           
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+
+            <button type="button" class="btn btn-light">@Html.ActionLink("Add Category", "Add", "News_Person")</button>
+        </div>
+    </div>
+</div>
+}
+
+
+<br />
+<hr />
+<div>
+    @Html.ActionLink("Back to List", "Index","Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
