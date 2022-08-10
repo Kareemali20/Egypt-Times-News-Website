@@ -1,0 +1,36 @@
+﻿@model Egypt_Times.Models.News
+@{
+    ViewBag.Title = "News Personalization";
+
+}
+
+<h2>News</h2>
+
+<div>
+    <br />
+    <div class="form-horizontal">
+        <h4>Choose your prefered news topics </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @using (Html.BeginForm("NewsList", "News", FormMethod.Post))
+        {
+            <div class="form-group">
+                <label for="exampleSelect1" class="form-label mt-4">Choose category </label>
+
+
+                @Html.DropDownListFor(model => model.ID, new SelectList(ViewBag.Data, "Value", "Text"), new { })
+
+
+            </div>
+
+            <br />
+
+            <input type="submit" value="Add Category" />
+
+        }
+
+    </div>
+
+
+</div>

@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace Egypt_Times.Models
 {
-    public partial class Model1 : DbContext
+    public partial class DBModel : DbContext
     {
-        public Model1()
-            : base("name=Model1")
+        public DBModel()
+            : base("name=DBModel")
         {
         }
 
@@ -47,11 +47,11 @@ namespace Egypt_Times.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Person>()
-                .Property(e => e.Password)
+                .Property(e => e.Phone)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Person>()
-                .Property(e => e.Phone)
+                .Property(e => e.Password)
                 .IsUnicode(false);
         }
     }

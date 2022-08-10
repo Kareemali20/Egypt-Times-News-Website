@@ -9,6 +9,9 @@ namespace Egypt_Times.Controllers
 {
     public class PersonController : Controller
     {
+
+        DBModel dbContext = new DBModel();
+
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
@@ -19,15 +22,15 @@ namespace Egypt_Times.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(Person personModel)
         {
-            using (Model1 dbModel = new Model1())
+            using (DBModel dbModel = new DBModel())
             {
                 dbModel.People.Add(personModel);
                 dbModel.SaveChanges();
             }
             ModelState.Clear();
-            ViewBag.SuccesMessage = "Registration Succesful ";
 
-            return View("~/Views/News_Person/Index.cshtml");
+          
+            return View("~/Views/News/NewsList.cshtml");
         }
 
 

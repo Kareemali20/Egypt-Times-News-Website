@@ -19,13 +19,10 @@ namespace Egypt_Times.Models
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Required]
         [StringLength(30)]
-        [Display(Name = "Last Name")]
-
         public string LastName { get; set; }
 
         public int Age { get; set; }
@@ -39,13 +36,12 @@ namespace Egypt_Times.Models
         public string Gender { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [StringLength(255)]
-        public string Password { get; set; }
-
-        [Required]
         [StringLength(30)]
         public string Phone { get; set; }
+
+        [Required]
+        [StringLength(255)]
+        public string Password { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<News> News { get; set; }
