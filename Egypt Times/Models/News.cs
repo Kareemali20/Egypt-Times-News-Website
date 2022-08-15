@@ -6,14 +6,11 @@ namespace Egypt_Times.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
+
     public partial class News
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public News()
-        {
-            People = new HashSet<Person>();
-        }
 
+        [Key]
         public int ID { get; set; }
 
         [Required]
@@ -23,7 +20,9 @@ namespace Egypt_Times.Models
         [StringLength(255)]
         public string newsDescription { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person> People { get; set; }
+
+
+       
     }
 }

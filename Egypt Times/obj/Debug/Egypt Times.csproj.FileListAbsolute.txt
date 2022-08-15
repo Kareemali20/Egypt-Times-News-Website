@@ -81,3 +81,6 @@ C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\EntityFramework.dll
 C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\EntityFramework.SqlServer.dll
 C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\EntityFramework.xml
 C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\EntityFramework.SqlServer.xml
+C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\Scrypt.dll
+C:\Users\96599\source\repos\Egypt Times\Egypt Times\obj\Debug\Egypt_Times.Migrations.InitialMigration.resources
+C:\Users\96599\source\repos\Egypt Times\Egypt Times\obj\Debug\Egypt Times.csproj.GenerateResource.cache

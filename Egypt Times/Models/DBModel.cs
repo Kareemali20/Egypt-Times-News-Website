@@ -14,6 +14,9 @@ namespace Egypt_Times.Models
 
         public virtual DbSet<News> News { get; set; }
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<UserNews> User_News { get; set; }
+
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -24,11 +27,6 @@ namespace Egypt_Times.Models
             modelBuilder.Entity<News>()
                 .Property(e => e.newsDescription)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<News>()
-                .HasMany(e => e.People)
-                .WithMany(e => e.News)
-                .Map(m => m.ToTable("User_News").MapLeftKey("NewsID").MapRightKey("UserID"));
 
             modelBuilder.Entity<Person>()
                 .Property(e => e.FirstName)
@@ -53,6 +51,15 @@ namespace Egypt_Times.Models
             modelBuilder.Entity<Person>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
+
+
+            modelBuilder.Entity<Person>()
+                .HasMany<News>(src => src.News);
+            modelBuilder.Entity<News>()
+                .HasMany<Person>(x => x.People);
+
+            base.OnModelCreating(modelBuilder);
+
         }
     }
 }
