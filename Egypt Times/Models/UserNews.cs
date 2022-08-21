@@ -10,12 +10,8 @@ namespace Egypt_Times.Models
 {
     public class UserNews
     {
-        [Key, Column(Order = 2)]
         public int User_ID { get; set; }
-        //public virtual Person User { get; set; }
-        [Key, Column(Order = 1)]
         public int News_ID { get; set; }
-        //public virtual News News { get; set; }
 
     }
 }

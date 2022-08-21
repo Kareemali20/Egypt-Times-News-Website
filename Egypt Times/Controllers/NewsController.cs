@@ -1,76 +1,99 @@
 ﻿using Egypt_Times.Models;
+using Newtonsoft.Json;
+using Rest;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Egypt_Times.Controllers
+namespace NewsAPI.Controllers
 {
     public class NewsController : Controller
     {
-        // GET: News
-        DBModel dbContext = new DBModel();
+
+        // Request Methods
+        public HttpWebRequest CreateRequest(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Accept = "application/json";
+            request.Method = "GET";
+
+            request.ContentType = @"application/json";
+
+            return request;
+        }
+
+        public HttpWebRequest CreateRequest(string url, News newsModel)
+        {
+            string jsonReq = JsonConvert.SerializeObject(newsModel);
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Accept = "application/json";
+            request.Method = "POST";
+
+            var data = Encoding.UTF8.GetBytes(jsonReq);
+            request.ContentType = @"application/json";
+            request.ContentLength = data.Length;
+
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
+
+            return request;
+        }
+
 
         public NewsController()
         {
-            LoadDropDownLists();
-        }
+            var request = CreateRequest("http://localhost/NewsAPI/News/LoadDropDownLists");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string jsonRes = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            List<SelectListItem> responseBack = JsonConvert.DeserializeObject<List<SelectListItem>>(jsonRes);
 
-        public void LoadDropDownLists()
-        {
-            var newsList = dbContext.News.ToList();
-
-            List<SelectListItem> lookup = new List<SelectListItem>();
-            foreach (var item in newsList)
-            {
-                lookup.Add(
-                    new SelectListItem() { Text = item.TypeName, Value = item.ID.ToString() }
-                    );
-
-            }
-
-            ViewBag.Data = lookup;
+            ViewBag.Data = responseBack;
         }
 
 
+        [HttpGet]
         public ActionResult NewsList()
         {
+
 
             return View();
         }
 
         [HttpPost]
-        public ActionResult NewsList(News entity)
+        public ActionResult NewsList(News Entity)
         {
 
-            var newsList = dbContext.News.ToList();
-            var userList = dbContext.People.ToList();
+            // Creating the request
+            var request = CreateRequest("http://localhost/NewsAPI/News/NewsList", Entity);
 
-            UserNews userNews = new UserNews
-            {
-                User_ID = userList[userList.Count - 1].ID,
-                News_ID = newsList[entity.ID - 1].ID
-            };
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string jsonRes = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            Response responseBack = JsonConvert.DeserializeObject<Response>(jsonRes);
 
-            // Checking if the news selection already exists or not
-            var isExtestd = dbContext.User_News
-                .Where(x => x.User_ID == userNews.User_ID && x.News_ID == userNews.News_ID)
-                .FirstOrDefault();
-            if(isExtestd == null)
+            if (!responseBack.Status)
             {
-                dbContext.User_News.Add(userNews);
-                dbContext.SaveChanges();
+                ViewBag.Error = responseBack.Message;
+                return View();
             }
             else
             {
-                ViewBag.Error = "News Already exists";
+                ViewBag.Succes = responseBack.Message;  
             }
 
-            ModelState.Clear();
             return View();
         }
+
+
 
     }
 }
