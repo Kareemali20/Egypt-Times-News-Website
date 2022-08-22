@@ -42,7 +42,7 @@ namespace NewsAPI.Controllers
             
             // Hashing the user password
             personModel.Password = encoder.Encode(personModel.Password);
-
+                
             // Adding the user to the database
             using (DBModel dbModel = new DBModel())
             {
@@ -55,6 +55,8 @@ namespace NewsAPI.Controllers
             ModelState.Clear();
 
             output = JsonConvert.SerializeObject(response);
+
+            
 
             return output;
             
@@ -97,6 +99,7 @@ namespace NewsAPI.Controllers
                 return output;
             }
 
+            response.Status = true;
             output = JsonConvert.SerializeObject(response);
 
             return output;

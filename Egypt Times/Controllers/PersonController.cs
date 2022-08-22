@@ -35,6 +35,29 @@ namespace NewsAPI.Controllers
             return request;
         }
 
+        public HttpWebRequest CreateRequest(string url)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(url);
+            request.Accept = "application/json";
+            request.Method = "GET";
+
+            request.ContentType = @"application/json";
+
+            return request;
+        }
+
+        public void DrawDropDownList()
+        {
+
+            var request = CreateRequest("http://localhost/NewsAPI/News/LoadDropDownLists");
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string jsonRes = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            List<SelectListItem> responseBack = JsonConvert.DeserializeObject<List<SelectListItem>>(jsonRes);
+
+            ViewBag.Data = responseBack;
+        }
+
+
 
         [HttpGet]
         public ActionResult SignUp()
@@ -60,7 +83,7 @@ namespace NewsAPI.Controllers
                 return View();
             }
 
-
+            DrawDropDownList();
             return View("~/Views/News/NewsList.cshtml");
         }
 
@@ -87,6 +110,7 @@ namespace NewsAPI.Controllers
                 return View();
             }
 
+            Session["email"] = personModel.Email;
             return View("~/Views/Home/Index.cshtml");
         }
 
