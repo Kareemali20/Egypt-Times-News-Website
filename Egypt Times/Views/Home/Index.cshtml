@@ -6,9 +6,15 @@
 
 <div class="jumbotron">
     <h1>Customized News Website</h1>
-    <p class="lead"> View your news now with your own interests and customize them the way you want!</p>
+    <p class="text-white"> View your news now with your own interests and customize them the way you want!</p>
 </div>
 
-<div class="row">
 
+
+<div class="row">
+    @using (Html.BeginForm("Request1", "Home", FormMethod.Post))
+    {
+        <input type="submit" value="Request" class="btn btn-primary" />
+
+    }
 </div>

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace NewsAPI.Models
+namespace Egypt_Times.Models
 {
     public class Article
     {
@@ -12,8 +12,8 @@ namespace NewsAPI.Models
         public string title { get; set; }
         public string description { get; set; }
 
-        public string url { get; set; } 
-        public string imageUrl { get; set; }
+        public string url { get; set; }
+        public string urlToImage { get; set; }
 
         public DateTime? publishedAt { get; set; }
 

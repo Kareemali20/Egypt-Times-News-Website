@@ -22,7 +22,7 @@ namespace NewsAPI.Controllers
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Accept = "application/json";
-            request.Method = "GET";
+            request.Method = "GET"; 
 
             request.ContentType = @"application/json";
 
@@ -35,6 +35,7 @@ namespace NewsAPI.Controllers
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Accept = "application/json";
             request.Method = "POST";
+           
 
             var data = Encoding.UTF8.GetBytes(jsonReq);
             request.ContentType = @"application/json";
@@ -92,8 +93,5 @@ namespace NewsAPI.Controllers
 
             return View();
         }
-
-
-
     }
 }

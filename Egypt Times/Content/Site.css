@@ -1,7 +1,8 @@
 ﻿body {
     padding-bottom: 20px;
-    background: linear-gradient(50deg, #355c7d,#a9a9a9);
-    height: 150vh;
+    /*background: linear-gradient(50deg, #355c7d,#a9a9a9);*/
+    background-color: #355c7d;
+    height: auto;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -24,3 +25,5 @@ select,
 textarea {
     max-width: 280px;
 }
+
+

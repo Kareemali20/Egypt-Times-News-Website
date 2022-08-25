@@ -134,3 +134,4 @@ C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\System.Security.AccessCo
 C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\System.Security.Permissions.xml
 C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\System.Security.Principal.Windows.xml
 C:\Users\96599\source\repos\Egypt Times\Egypt Times\obj\Debug\Egypt Times.csproj.App.config
+C:\Users\96599\source\repos\Egypt Times\Egypt Times\bin\NewsAPI.dll
