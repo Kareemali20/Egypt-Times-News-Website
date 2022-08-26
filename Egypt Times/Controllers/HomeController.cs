@@ -19,19 +19,11 @@ namespace Egypt_Times.Controllers
 {
     public class HomeController : Controller
     {
-
-     
-
-        public HomeController()
-        {
-        }
-
+         
         public ActionResult Index()
         {
 
-           
-
-            return View();
+            return RedirectToAction("Request","NewsApiClient");
         }
 
         public ActionResult About()
@@ -48,44 +40,5 @@ namespace Egypt_Times.Controllers
             return View();
         }
 
-        public ActionResult Request1()
-        {
-
-            Request requestObj = new Request
-            {
-                key = "44f035ff7eac4f36b9de5f7168169c95",
-                country = "us",
-                category = "technology",
-                q = "sony"
-
-            };
-
-            string url = "https://newsapi.org/v2/top-headlines?country=us&apiKey=44f035ff7eac4f36b9de5f7168169c95";
-
-            var jsonReq = JsonConvert.SerializeObject(requestObj);
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Accept = "application/json";
-            request.Method = "POST";
-
-
-            var data = Encoding.UTF8.GetBytes(jsonReq);
-            request.ContentType = @"application/json";
-            request.ContentLength = data.Length;
-
-
-            using (var stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
-
-
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            string jsonRes = new StreamReader(response.GetResponseStream()).ReadToEnd();
-            NewsResponse responseBack = JsonConvert.DeserializeObject<NewsResponse>(jsonRes);
-
-
-
-            return View(responseBack);
-        }   
     }
 }

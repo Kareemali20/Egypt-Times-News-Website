@@ -4447,10 +4447,11 @@ textarea.form-control-lg {
   margin-left: -1px;
 }
 .pagination-lg {
-  --bs-pagination-padding-x: 1.5rem;
-  --bs-pagination-padding-y: 0.75rem;
-  --bs-pagination-font-size: 1.25rem;
-  --bs-pagination-border-radius: 0.5rem;
+    --bs-pagination-padding-x: 1.5rem;
+    --bs-pagination-padding-y: 0.75rem;
+    --bs-pagination-font-size: 1.25rem;
+    --bs-pagination-border-radius: 0.5rem;
+    --bs-pagination-justify-content: center;
 }
 
 .pagination-sm {

@@ -12,9 +12,7 @@ namespace Egypt_Times.Models
         public string category { get; set; }
         public string q { get; set; }
         public int pageSize { get; set; }
-        public int page { get; set; } 
-
-
+        public int page { get; set; }
 
     }
 }
