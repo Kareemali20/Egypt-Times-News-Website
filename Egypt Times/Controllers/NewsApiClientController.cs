@@ -38,7 +38,7 @@ namespace Egypt_Times.Controllers
             return responseBack;
         }
 
-        public Request CreateRequestObject()
+        public Request CreateRandomRequestObject()
         {
             Random random = new Random();
 
@@ -73,15 +73,30 @@ namespace Egypt_Times.Controllers
             return requestObj;
         }
 
+        public Request CreateUserCustomRequest()
+        {
+            Request requestObject = new Request();
+
+
+            return requestObject;
+        }
+
+        
 
         public new ActionResult Request()
         {
 
-            Request requestObj = CreateRequestObject();
+            Request requestObj = CreateRandomRequestObject();
             NewsResponse responseBack = RequestAndGetResponse(requestObj);
 
 
             return View(responseBack);
+        }
+
+        public ActionResult UserCustomNews()
+        {
+
+            return View();
         }
     }
 }

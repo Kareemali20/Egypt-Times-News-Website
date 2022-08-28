@@ -8,27 +8,57 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                @Html.ActionLink("Egypt Times", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                   
+    @if (Session["user"] != null)
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    @Html.ActionLink("Egypt Times", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    <h3 class="text-danger" style="display:inline-block">Hello</h3>
+                    <h3 class="text-white" style="display:inline-block">@Session["User"]</h3>
+                </div>
 
-                </ul>
-                <form class="d-flex">
-                    <button type="button" class="btn btn-light">@Html.ActionLink("Sign up", "SignUp", "Person")</button>
-                    <pre> </pre>
-                    <button type="button" class="btn btn-light">@Html.ActionLink("Log in", "LogIn", "Person")</button>
-                </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+
+                    <ul class="navbar-nav me-auto">
+                    </ul>
+                    <form class="d-flex">
+                        <button type="button" class="btn btn-danger">@Html.ActionLink("Change Preferences", "NewsList", "News")</button>
+
+                        <pre> </pre>
+                        <button type="button" class="btn btn-light">@Html.ActionLink("Log Out", "LogOut", "Person")</button>
+
+                    </form>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    }
+    else
+    {
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    @Html.ActionLink("Egypt Times", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto">
+                    </ul>
+                    <form class="d-flex">
+                        <button type="button" class="btn btn-light">@Html.ActionLink("Sign up", "SignUp", "Person")</button>
+                        <pre> </pre>
+                        <button type="button" class="btn btn-light">@Html.ActionLink("Log in", "LogIn", "Person")</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    }
+
 
     <br />
     <div class="container body-content">

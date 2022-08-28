@@ -359,7 +359,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="VIewModels\" />
-    <Folder Include="Views\NewsResponse\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -72,11 +72,11 @@ namespace NewsAPI.Controllers
 
             // Creating the request
             var request = CreateRequest("http://localhost/NewsAPI/User/signup", personModel);
-            
+
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             string jsonRes = new StreamReader(response.GetResponseStream()).ReadToEnd();
             Response responseBack = JsonConvert.DeserializeObject<Response>(jsonRes);
-            
+
             if (!responseBack.Status)
             {
                 ViewBag.Error = responseBack.Message;
@@ -110,9 +110,34 @@ namespace NewsAPI.Controllers
                 return View();
             }
 
-            Session["email"] = personModel.Email;
-            return View("~/Views/Home/Index.cshtml");
+            Session["user"] = personModel.Email;
+
+            return RedirectToAction("ListNewsInSession", personModel);
         }
+
+        public ActionResult LogOut()
+        {
+            // Clearing the session 
+            Session.Remove("user");
+            Session.Remove("news");
+
+            return RedirectToAction("Request", "NewsApiClient");
+        }
+
+
+        public ActionResult ListNewsInSession(Person personObject)
+        {
+            var request = CreateRequest("http://localhost/NewsAPI/User/UserNewsList", personObject);
+
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string jsonRes = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            List<string> responseBack = JsonConvert.DeserializeObject<List<string>>(jsonRes);
+
+            Session["news"] = responseBack;
+
+            return RedirectToAction("CreateUserCustomRequest", "NewsApiClient");
+        }
+
 
         public ActionResult Index()
         {
