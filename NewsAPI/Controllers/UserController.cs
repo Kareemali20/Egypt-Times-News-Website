@@ -94,12 +94,17 @@ namespace NewsAPI.Controllers
             if (!isCorrectPassword)
             {
                 response.Message = "Email Or Password Not valid";
-
+                response.Status = false;
                 output = JsonConvert.SerializeObject(response);
                 return output;
             }
 
             response.Status = true;
+            response.id = dbContext.Users
+                .Where(m => m.Email == personModel.Email)
+                .Select(m => m.ID)
+                .SingleOrDefault();
+
             output = JsonConvert.SerializeObject(response);
 
             return output;

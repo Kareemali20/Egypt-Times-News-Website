@@ -35,6 +35,7 @@ namespace NewsAPI.Models
         public string Gender { get; set; }
 
         [Required]
+        [DataType(DataType.PhoneNumber)]
         [StringLength(30)]
         public string Phone { get; set; }
 

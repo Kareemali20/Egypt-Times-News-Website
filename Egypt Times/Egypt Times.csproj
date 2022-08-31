@@ -309,6 +309,7 @@
     <Content Include="Views\News\NewsList.cshtml" />
     <Content Include="Views\Person\LogIn.cshtml" />
     <Content Include="Views\NewsApiClient\Request.cshtml" />
+    <Content Include="Views\NewsApiClient\UserCustomNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

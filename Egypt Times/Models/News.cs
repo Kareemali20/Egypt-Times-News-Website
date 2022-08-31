@@ -14,6 +14,7 @@ namespace Egypt_Times.Models
         public int ID { get; set; }
         public string TypeName { get; set; }
         public string newsDescription { get; set; }
+
         public virtual ICollection<Person> People { get; set; }
 
     }

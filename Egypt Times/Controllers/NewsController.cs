@@ -53,7 +53,7 @@ namespace NewsAPI.Controllers
 
         public NewsController()
         {
-            var request = CreateRequest("http://localhost/NewsAPI/News/LoadDropDownLists");
+           var request = CreateRequest("http://localhost/NewsAPI/News/LoadDropDownLists");
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             string jsonRes = new StreamReader(response.GetResponseStream()).ReadToEnd();
             List<SelectListItem> responseBack = JsonConvert.DeserializeObject<List<SelectListItem>>(jsonRes);
@@ -66,7 +66,6 @@ namespace NewsAPI.Controllers
         public ActionResult NewsList()
         {
 
-
             return View();
         }
 
@@ -74,6 +73,7 @@ namespace NewsAPI.Controllers
         public ActionResult NewsList(News Entity)
         {
 
+            Entity.newsDescription = Session["id"].ToString();
             // Creating the request
             var request = CreateRequest("http://localhost/NewsAPI/News/NewsList", Entity);
 

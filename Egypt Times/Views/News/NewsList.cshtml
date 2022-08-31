@@ -21,11 +21,10 @@
 
                 @Html.DropDownListFor(model => model.ID, new SelectList(ViewBag.Data, "Value", "Text"), new { })
 
-            </div>
-            <br />
-
-            <input type="submit" value="Add Category" />
-            <button type="button"> @Html.ActionLink("Done", "LogIn", "Person")</button>
+            </div><br /><input type="submit" value="Add Category" />
+            <button type="button">
+                @Html.ActionLink("Done", "Index", "Home")
+            </button>
         }
 
     </div>

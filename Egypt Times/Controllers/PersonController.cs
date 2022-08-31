@@ -46,6 +46,22 @@ namespace NewsAPI.Controllers
             return request;
         }
 
+        public string getIDFromSession()
+        {
+            Response response = new Response();
+
+            string output = " ";
+            if (Session["id"] != null)
+            {
+                response.id = (Int32)Session["id"];
+            }
+            output = JsonConvert.SerializeObject(response);
+
+            return output;
+
+
+        }
+
         public void DrawDropDownList()
         {
 
@@ -83,6 +99,8 @@ namespace NewsAPI.Controllers
                 return View();
             }
 
+            Session["id"] = personModel.ID;
+
             DrawDropDownList();
             return View("~/Views/News/NewsList.cshtml");
         }
@@ -111,6 +129,9 @@ namespace NewsAPI.Controllers
             }
 
             Session["user"] = personModel.Email;
+            personModel.ID = responseBack.id;
+            Session["id"] = personModel.ID;
+
 
             return RedirectToAction("ListNewsInSession", personModel);
         }
@@ -120,6 +141,8 @@ namespace NewsAPI.Controllers
             // Clearing the session 
             Session.Remove("user");
             Session.Remove("news");
+            Session.Remove("id");
+
 
             return RedirectToAction("Request", "NewsApiClient");
         }
@@ -135,7 +158,7 @@ namespace NewsAPI.Controllers
 
             Session["news"] = responseBack;
 
-            return RedirectToAction("CreateUserCustomRequest", "NewsApiClient");
+            return RedirectToAction("UserCustomNews", "NewsApiClient");
         }
 
 

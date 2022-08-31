@@ -15,7 +15,7 @@
                 <div class="navbar-header">
                     @Html.ActionLink("Egypt Times", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                     <h3 class="text-danger" style="display:inline-block">Hello</h3>
-                    <h3 class="text-white" style="display:inline-block">@Session["User"]</h3>
+                    <h3 class="text-white" style="display:inline-block">@Session["user"]</h3>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,6 +26,11 @@
                     <ul class="navbar-nav me-auto">
                     </ul>
                     <form class="d-flex">
+
+                        <button type="button" class="btn btn-danger">@Html.ActionLink("Your Categories", "UserCustomNews", "NewsApiClient")</button>
+
+                        <pre> </pre>
+
                         <button type="button" class="btn btn-danger">@Html.ActionLink("Change Preferences", "NewsList", "News")</button>
 
                         <pre> </pre>

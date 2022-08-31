@@ -10,6 +10,7 @@ namespace Egypt_Times.Models
     {
         public string status { get; set; }
         public int totalResults { get; set; }
+        public string responseType { get; set; }
         public List<Article> articles { get; set; }
 
         public NewsResponse()

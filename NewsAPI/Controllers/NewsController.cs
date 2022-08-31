@@ -1,14 +1,16 @@
 ﻿using NewsAPI.Models;
+using Newtonsoft.Json;
+using Rest;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text.Json;
 using System.Web;
 using System.Web.Mvc;
-using RestSharp;
-using Rest;
-using System.Text.Json;
-using Newtonsoft.Json;
 
 namespace NewsAPI.Controllers
 {
@@ -17,6 +19,7 @@ namespace NewsAPI.Controllers
         // GET: News
         DBModel dbContext = new DBModel();
         Response response = new Response();
+
 
         public NewsController()
         {
@@ -33,7 +36,7 @@ namespace NewsAPI.Controllers
                 lookup.Add(
                     new SelectListItem() { Text = item.TypeName, Value = item.ID.ToString() }
                     );
-                 
+
             }
 
             return JsonConvert.SerializeObject(lookup);
@@ -56,9 +59,10 @@ namespace NewsAPI.Controllers
             var newsList = dbContext.News.ToList();
             var userList = dbContext.Users.ToList();
 
+
             UserNews userNews = new UserNews
             {
-                User_ID = userList[userList.Count - 1].ID,
+                User_ID = Int16.Parse(entity.newsDescription),
                 News_ID = newsList[entity.ID - 1].ID
             };
 
@@ -66,7 +70,7 @@ namespace NewsAPI.Controllers
             var isExist = dbContext.User_News
                 .Where(x => x.User_ID == userNews.User_ID && x.News_ID == userNews.News_ID)
                 .FirstOrDefault();
-            if(isExist == null)
+            if (isExist == null)
             {
                 dbContext.User_News.Add(userNews);
                 dbContext.SaveChanges();
@@ -91,4 +95,5 @@ namespace NewsAPI.Controllers
 
 
     }
+
 }
